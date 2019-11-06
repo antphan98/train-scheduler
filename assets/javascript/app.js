@@ -38,11 +38,18 @@ $("#inputFrequency").val("");
 
 });
 
-// database.ref().on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function(childSnapshot) {
+     const trainName = childSnapshot.val();
+     const destination = childSnapshot.val();
+     const trainTime = childSnapshot.val();
+     const frequency = childSnapshot.val();
 
 
 
-//     const newRow = $("<tr>");
-
-
-// });
+     $("#table").append(
+        ' <tr><td>' +  +
+        ' </td><td>' + trainName +
+        ' </td><td>' + destination +
+        ' </td><td>' + trainTime +
+        ' </td><td>' + frequency + ' </td></tr>');
+});
