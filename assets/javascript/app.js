@@ -23,8 +23,8 @@ let trainData = {
     trainName: $("#inputTrain").val().trim(),
     destination: $("#inputDestination").val().trim(),
     trainTime: $("#inputTrainTime").val().trim(),
-    frequency: parseInt($("#inputFrequency").val().trim())
-
+    frequency: parseInt($("#inputFrequency").val().trim()),
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
 }
 
 console.log(trainData);
@@ -37,3 +37,12 @@ $("#inputFrequency").val("");
 
 
 });
+
+// database.ref().on("child_added", function(childSnapshot) {
+
+
+
+//     const newRow = $("<tr>");
+
+
+// });
