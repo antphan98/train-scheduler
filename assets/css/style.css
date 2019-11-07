@@ -4,6 +4,12 @@
     text-align: center;
     margin-bottom: -30px;
 
+}
+
+body {
+
+    font-family: 'Abril Fatface', cursive;
+    
 
 }
 
@@ -20,6 +26,21 @@
     width: 100px;
     margin-right: 950px;
     margin-top: -170px;
+
+
+}
+
+#jumbotron {
+
+    background-color: rgb(250, 216, 221);
+
+
+}
+
+
+.table {
+
+    margin-top: 10px;
 
 
 }
