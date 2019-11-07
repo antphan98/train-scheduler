@@ -1,3 +1,5 @@
+
+$(document).ready(function() {
 var firebaseConfig = {
     apiKey: "AIzaSyAnMKcmu_grEC7n94X5EjJ387SyglzTnWA",
     authDomain: "trainscheduler-39708.firebaseapp.com",
@@ -24,17 +26,16 @@ $(document).on("click", "#submit", function (event) {
             const trainTime = $("#inputTrainTime").val().trim();
             const frequency = parseInt($("#inputFrequency").val().trim());
 
-
-            console.log(trainData);
             database.ref().push({
 
                 trainName: trainName,
                 destination: destination,
                 frequency: frequency,
                 trainTime: trainTime,
-                dateAdded: firebase.database.ServerValue.TIMESTAMP
 
             });
+
+        });
 
             database.ref().on("child_added", function (childSnapshot) {
                 const newTrain = childSnapshot.val().trainName;
@@ -42,13 +43,19 @@ $(document).on("click", "#submit", function (event) {
                 const newTime = childSnapshot.val().trainTime;
                 const newFrequency = childSnapshot.val().frequency;
                 
-                const now = moment();
                 const startTime = moment(newTime, "hh:mm").subtract(1, "years");
-                
+                const subtractTime = moment().diff(moment(startTime), "minutes");
+                const remainder = subtractTime % newFrequency;
+                const minToArrival = newFrequency - remainder;
+                const nextTrain = moment().add(minToArrival, "minutes");
+                const train = moment(nextTrain).format("hh:mm");
 
                 $("#table").append(
-                     "<tr><td>" + newTrain +
+                    "<tr><td>" + newTrain +
                     "</td><td>" + newDestination +
-                    "</td><td>" + newTime +
-                    "</td><td>" + newFrequency + "</td></tr>");
-            }
+                    "</td><td>" + newFrequency +
+                    "</td><td>" + train +
+                    "</td><td>" + minToArrival + "</td></tr>");
+            });
+
+        });
