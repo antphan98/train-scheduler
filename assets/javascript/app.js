@@ -37,16 +37,16 @@ $(document).on("click", "#submit", function (event) {
             });
 
             database.ref().on("child_added", function (childSnapshot) {
-                const trainName = childSnapshot.val();
-                const destination = childSnapshot.val();
-                const trainTime = childSnapshot.val();
-                const frequency = childSnapshot.val();
+                const newTrain = childSnapshot.val().trainName;
+                const newDestination = childSnapshot.val().destination;
+                const newTime = childSnapshot.val().trainTime;
+                const newFrequency = childSnapshot.val().frequency;
 
 
 
                 $("#table").append(
-                    ' <tr><td>' + trainName +
-                    ' </td><td>' + destination +
-                    ' </td><td>' + trainTime +
-                    ' </td><td>' + frequency + ' </td></tr>');
+                    ' <tr><td>' + newTrain +
+                    ' </td><td>' + newDestination +
+                    ' </td><td>' + newTime +
+                    ' </td><td>' + newFrequency + ' </td></tr>');
             });
