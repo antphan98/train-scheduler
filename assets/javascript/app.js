@@ -41,12 +41,14 @@ $(document).on("click", "#submit", function (event) {
                 const newDestination = childSnapshot.val().destination;
                 const newTime = childSnapshot.val().trainTime;
                 const newFrequency = childSnapshot.val().frequency;
-
-
+                
+                const now = moment();
+                const startTime = moment(newTime, "hh:mm").subtract(1, "years");
+                
 
                 $("#table").append(
-                    ' <tr><td>' + newTrain +
-                    ' </td><td>' + newDestination +
-                    ' </td><td>' + newTime +
-                    ' </td><td>' + newFrequency + ' </td></tr>');
-            });
+                     "<tr><td>" + newTrain +
+                    "</td><td>" + newDestination +
+                    "</td><td>" + newTime +
+                    "</td><td>" + newFrequency + "</td></tr>");
+            }
